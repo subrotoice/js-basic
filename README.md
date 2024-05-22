@@ -702,22 +702,23 @@ let priceRanges = [
 ## 6.1 Adding array
 
 The splice() method adds new items to an array. Splice-সংযুক্ত করান<br>
-The slice() method slices out a piece of an array. Slice - টুকরা বা ফালি
+The slice() method slices out a piece of an array. Slice - কেটে নেওয়া
 
 ```js
 const numbers = [3, 4];
 
 // End: adds a new element to an array (at the end)
-numbers.push(5, 6); // 3, 4 => 3, 4, 1, 2
+numbers.push(5, 6); // 3, 4 => 3, 4, 5, 6
 
 // Begining: adds a new element to an array (at the beginning)
 numbers.unshift(1, 2); // 3, 4 => 1, 2, 3, 4
 
-// Middle | (start index, remove item number, item)
-numbers.splice(2, 0, "a", "b");
+// Middle | (start index, items you want to remove, adding items)
+numbers.splice(2, 0, "a", "b"); // So, it do both delete and adding
+
 // With clever parameter setting, you can use splice() to remove elements without leaving "holes" in the array:
 const fruits = ["Banana", "Orange", "Apple", "Mango"];
-fruits.splice(0, 1); // Banana,Orange,Apple,Mango=>Orange,Apple,Mango
+fruits.splice(0, 1); // Banana, Orange, Apple, Mango => Orange, Apple, Mango
 
 console.log(numbers);
 ```
@@ -728,26 +729,10 @@ console.log(numbers);
 const numbers = [1, 2, 3, 1, 4];
 
 console.log(numbers.indexOf(1));
-console.log(numbers.indexOf(1, 2));
+console.log(numbers.indexOf(1, 2)); // array.indexOf(item, start)
 console.log(numbers.lastIndexOf(1));
 
 console.log(numbers.includes(1));
-```
-
-##
-
-```js
-const courses = [
-  { id: 1, name: "a" },
-  { id: 2, name: "b" },
-  { id: 3, name: "c" },
-];
-
-const course = courses.find(function (course) {
-  return course.name === "a";
-});
-
-console.log(course);
 ```
 
 ## 6.3 Finding Elements (Object)
@@ -781,9 +766,9 @@ const numbers = [1, 2, 3, 4];
 const last = numbers.pop();
 
 // Begining: Shifting is equivalent to popping, but on first element instead of the last.
-const first = numbers.shift(); // Banana,Orange,Apple,Mango => Orange,Apple,Mango
+const first = numbers.shift(); // Banana, Orange, Apple, Mango => Orange, Apple, Mango
 
-// Middle | (start index, delete index, item)
+// Middle | (start index, items you want to remove, adding items)
 numbers.splice(1, 2);
 
 console.log(numbers); // Output: [1, 4]
@@ -807,6 +792,11 @@ console.log(numbers);
 ```
 
 ## 6.6 Combining and Slicing Arrays & The Spread Operator
+
+The slice() method in JavaScript is used to extract a section of an array or string and return it as a new array or string without modifying the original. <br>
+array.slice(start, end)<br>
+start Optional, Default is 0, Negative numbers select from the end of the array.<br>
+end Optional, End position, Default is last element, Negative numbers select from the end of the array.
 
 ```js
 const first = [1, 2, 3];
@@ -956,12 +946,12 @@ console.log(numbers, items);
 
 ## 6.13 Reducing an Array
 
-- Reduce to a single value. Callback function's return value will be the accumulator of next iteration what ever the return value we set.
+- Reduce to a single value. Callback function's return value will be the next iteration what ever the return value we set.
 
 ```js
 const numbers = [1, 2, -1, 3];
 
-// Rounds
+// Rounds: accumulator a, currentValue c  => accumulator a (Next iteration)
 // a = 0, c=1 => a=1
 // a = 1, c=2 => a=3
 // a = 3, c=-1 => a=2
@@ -984,7 +974,107 @@ const sum = numbers.reduce(
 console.log(sum); // output: 5
 ```
 
-## Exercise 1- Array from Range
+## Array methods in short
+
+```js
+// forEach
+[1, 2, 3].forEach((num) => console.log(num)); // 1 2 3
+
+// map
+let squares = [1, 2, 3].map((num) => num * 2); // [2, 4, 6]
+
+// filter
+let evens = [1, 2, 3, 4].filter((num) => num % 2 === 0); // [2, 4]
+
+// reduce
+let sum = [1, 2, 3, 4].reduce((acc, num) => acc + num, 0); // 10
+
+// find
+let firstEven = [1, 2, 3, 4].find((num) => num % 2 === 0); // 2
+
+// findIndex
+let firstEvenIndex = [1, 2, 3, 4].findIndex((num) => num % 2 === 0); // 1
+
+// indexOf
+let index = [1, 2, 3, 1].indexOf(1); // 0
+
+// includes
+let hasTwo = [1, 2, 3].includes(2); // true
+
+// some
+let hasEven = [1, 2, 3].some((num) => num % 2 === 0); // true
+
+// every
+let allEven = [2, 4, 6].every((num) => num % 2 === 0); // true
+
+// slice
+let part = [1, 2, 3, 4].slice(1, 3); // [2, 3]
+
+// splice
+let arr = [1, 2, 3, 4];
+arr.splice(1, 2); // [2, 3], arr becomes [1, 4]
+
+// concat
+let combined = [1, 2].concat([3, 4]); // [1, 2, 3, 4]
+
+// join
+let joined = [1, 2, 3].join("-"); // "1-2-3"
+
+// reverse
+let reversed = [1, 2, 3].reverse(); // [3, 2, 1]
+
+// sort
+let sorted = [3, 1, 2].sort(); // [1, 2, 3]
+
+// push
+let nums = [1, 2];
+nums.push(3); // nums becomes [1, 2, 3]
+
+// pop
+let last = nums.pop(); // last is 3, nums becomes [1, 2]
+
+// shift
+let first = nums.shift(); // first is 1, nums becomes [2]
+
+// unshift
+nums.unshift(0); // nums becomes [0, 2]
+
+// flat
+let flatArr = [1, [2, 3], [4, [5]]].flat(2); // [1, 2, 3, 4, 5]
+
+// flatMap
+let flatMapped = [1, 2, 3].flatMap((num) => [num, num * 2]); // [1, 2, 2, 4, 3, 6]
+
+// fill
+let filled = new Array(3).fill(0); // [0, 0, 0]
+
+// from
+let arrayFrom = Array.from("123"); // ['1', '2', '3']
+
+// isArray
+let isArray = Array.isArray([1, 2, 3]); // true
+
+// of
+let arrayOf = Array.of(1, 2, 3); // [1, 2, 3]
+
+// copyWithin
+let copyArr = [1, 2, 3, 4];
+copyArr.copyWithin(1, 2); // [1, 3, 4, 4]
+
+// entries
+let iterator = [1, 2, 3].entries();
+for (let entry of iterator) console.log(entry); // [0, 1] [1, 2] [2, 3]
+
+// keys
+let keyIterator = [1, 2, 3].keys();
+for (let key of keyIterator) console.log(key); // 0 1 2
+
+// values
+let valueIterator = [1, 2, 3].values();
+for (let value of valueIterator) console.log(value); // 1 2 3
+```
+
+## Exercise 1: Array from Range
 
 ```js
 const numbers = arrayFromRange(-6, -5);
@@ -1011,7 +1101,7 @@ function arrayFromRange(min, max) {
 }
 ```
 
-## Exercise 2- Includes an item in array
+## Exercise 2: Includes an item in array
 
 ```js
 const numbers = [1, 2, 3, 4];
@@ -1034,7 +1124,7 @@ function includes(array, searchElement) {
 console.log(numbers.includes(-4));
 ```
 
-## Exercise 3- There is an array we exclude its element that we find in another array.
+## Exercise 3: There is an array we exclude its element that we find in another array.
 
 ```js
 const numbers = [1, 2, 3, 4];
@@ -1526,56 +1616,157 @@ function countOccurrences(array, searchElement) {
 }
 ```
 
-##
+# Ch-8: ES6 Tooling
+
+## 8.1 Modules
+
+Modularity of code
+
+- Maintainability
+- Reuse
+- Abstract (Sometimes we return some property)
+
+ES5
+
+- AMD > Browser
+- CommonJS > Node.js
+- UMD > Browser / Node.js
+- ES6
+
+- ES6 Modules
+  We need to learn CommonJS(Node.js) and ES6 Modules(Browser)
+
+## 8.2 CommonJS Modules (only for Node.js)
+
+- Cohesion: Think are highly related they go together.
 
 ```js
+// index.js (Import)
+// like: circle = module.exports
+const circle = require("./circle"); // Common js format
 
+circle(20); // Default exports works here
+circle.nameExportSquare(4); // nameExports works here
+console.log(circle.personObj); // NameExports works here
 ```
-
-##
 
 ```js
+// circle.js (Exports)
+// Code Blok 1
+const circle = (arg) => console.log("Argument Circle " + arg);
 
+// Code Blok 2
+const square = (arg) => console.log("Argument Square " + arg);
+
+// Code Blok 3
+const personObj = { name: "Subroto", value: 1 };
+
+// By default everyting is define here is private this way we are making public. we can keep 4th property private
+// here exports is an object it can add any property to it
+module.exports = circle; // Default Exports
+module.exports.nameExportSquare = square; // Name Export, Exporting nameExportSquare() function
+module.exports.personObj = personObj; // Name Export, Exporting personObj object
 ```
 
-##
+## 8.3 ES6 Modules
 
 ```js
+// index.js (circle from default export, {personObj, square} name export)
+import circle, { personObj, square } from "./circle.js";
 
+circle(20); // Default exports works here
+square(47); // Name exports
+console.log(personObj);
 ```
-
-##
 
 ```js
+// circle.js
+// Code Blok 1
+const circle = (arg) => console.log("Argument Circle " + arg);
 
+// Code Blok 2
+const square = (arg) => console.log("Argument Square " + arg);
+
+// Code Blok 3
+const personObj = { name: "Subroto", value: 1 };
+
+// ES6 Modules
+export default circle; // Default Exports
+export { square, personObj }; // Name exports
 ```
 
-##
+## 8.4 ES6 Tooling
+
+1. Transpiler: Translator + Compiler
+   ModernJs -> Babel -> ES5
+2. Bundler
+   file1.js + file2.js + file3.js -> WebPack -> bundle.js
+
+Initializing package.json
+
+```bash
+npm init --yes
+```
+
+## 8.5 Babel - 3 packeg need to install
+
+```bash
+npm i babel-cli@6.26.0 babel-core@6.26.0 babel-preset-env@1.6.1 --save-dev
+```
+
+```bash
+npm i babel-cli // Active command link like npm
+babel-core // Main files for transpiling
+babel-preset-env // All modern ES6 plugin for transfering. It include all
+--save-dev // Development depedency. It will not included in production only in development computer
+```
+
+Here "npm run babel" is typing command "babel --presets env index.js -o build/index.js" <br>
+its mean -o: Ouptup folder and file
 
 ```js
-
+  "scripts": {
+    "babel": "babel --presets env index.js -o build/index.js"
+  }
 ```
-
-##
 
 ```js
-
+// index.js
+const i = "Ok";
 ```
 
-##
+"npm run babel"
 
 ```js
+// build/index.js
+"use strict";
 
+var i = "Ok";
 ```
 
-##
+## 8.6 WebPack (Transpile + Combine all js + Minify )
 
-```js
+**All we do in 8.5 Babel to illustrate how babel works. In real life project we do not do this. If you use webpack then it autometically include this**<br>
 
+Move all js file in src/ folder <br>
+Install webpack-cli as devDependencies
+
+```bash
+npm i -D @webpack-cli/generators // Generate package.json, package-lock.json, node_modules
 ```
 
-##
+Create dist/main.js
 
-```js
-
+```bash
+npm run build
 ```
+
+Add -w (watch) then you need not to build every time. Just after adding -w run "npm run build" then change in src file will bundel in dist/main.js
+
+```bash
+"scripts": {
+  "build": "webpack --mode=production --node-env=production -w",
+}
+```
+
+NB: If we install any packeg globally(-g). So that we can use it in any project.
