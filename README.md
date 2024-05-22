@@ -1272,6 +1272,7 @@ console.log(sum(1, 2, 3, 10));
 
 ## 7.4- The Rest Operator
 
+- Whatever we pass to a rest operator that convert to an array
 - If we want a function with varying number of parameters we can use the rest operator. It should not be mistaken by the spread operator
 - A function's last parameter can be prefixed with ... which will cause all remaining (user supplied) arguments to be placed within a "standard" JavaScript array.
 - Only the last parameter can be a "rest parameter".
@@ -1330,7 +1331,7 @@ console.log(person.fullName); // Getter: no need to use fullName()
 
 ## 7.7- Try and Catch
 
-- When encounter throw new Error() then stop executing rest of code of that method and control goes to catch block
+- When encounter error then throw new Error() and stop executing rest of code of that method and then control goes to catch block.
 
 ```js
 const person = {
@@ -1469,22 +1470,60 @@ const video = {
 video.showTags();
 ```
 
-##
+## Exercise 1- Sum of Arguments. sum(1, 2, 3, 6) / sum([1, 2, 3, 6])
 
 ```js
+// My Solution
+console.log(sum(1, 2, 3, 6));
 
+function sum(...rest) {
+  if (Array.isArray(rest[0])) return rest[0].reduce((a, c) => a + c);
+  return rest.reduce((a, c) => a + c);
+}
+
+// Mosh
+console.log(sum([2, 2, 3, 2]));
+function sum(...items) {
+  if (items.length === 1 && Array.isArray(items[0])) items = [...items[0]];
+  return items.reduce((a, c) => a + c);
+}
 ```
 
-##
+## Exercise 2- Area of Circle.js
 
 ```js
+const circle = {
+  radius: 2,
+  get area() {
+    return Math.PI * this.radius * this.radius;
+  },
+};
 
+console.log(circle.area);
 ```
 
-##
+## Exercise 3- Error Handling
 
 ```js
+const numbers = [1, 2, 3, 4];
 
+try {
+  const count = countOccurrences("", 1);
+  console.log(count);
+} catch (error) {
+  console.log(error.message);
+}
+
+function countOccurrences(array, searchElement) {
+  if (!Array.isArray(array))
+    throw new Error(`Item is not an array its ${typeof array}`);
+
+  return array.reduce((accumulator, current) => {
+    const occurrence = current === searchElement ? 1 : 0;
+    console.log(accumulator, current, searchElement);
+    return accumulator + occurrence;
+  }, 0);
+}
 ```
 
 ##
