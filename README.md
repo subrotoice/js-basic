@@ -1532,50 +1532,157 @@ function countOccurrences(array, searchElement) {
 
 ```
 
-##
+# Ch-8: ES6 Tooling
+
+## 8.1 Modules
+
+Modularity of code
+
+- Maintainability
+- Reuse
+- Abstract (Sometimes we return some property)
+
+ES5
+
+- AMD > Browser
+- CommonJS > Node.js
+- UMD > Browser / Node.js
+- ES6
+
+- ES6 Modules
+  We need to learn CommonJS(Node.js) and ES6 Modules(Browser)
+
+## 8.2 CommonJS Modules (only for Node.js)
+
+- Cohesion: Think are highly related they go together.
 
 ```js
+// index.js (Import)
+// like: circle = module.exports
+const circle = require("./circle"); // Common js format
 
+circle(20); // Default exports works here
+circle.nameExportSquare(4); // nameExports works here
+console.log(circle.personObj); // NameExports works here
 ```
-
-##
 
 ```js
+// circle.js (Exports)
+// Code Blok 1
+const circle = (arg) => console.log("Argument Circle " + arg);
 
+// Code Blok 2
+const square = (arg) => console.log("Argument Square " + arg);
+
+// Code Blok 3
+const personObj = { name: "Subroto", value: 1 };
+
+// By default everyting is define here is private this way we are making public. we can keep 4th property private
+// here exports is an object it can add any property to it
+module.exports = circle; // Default Exports
+module.exports.nameExportSquare = square; // Name Export, Exporting nameExportSquare() function
+module.exports.personObj = personObj; // Name Export, Exporting personObj object
 ```
 
-##
+## 8.3 ES6 Modules
 
 ```js
+// index.js (circle from default export, {personObj, square} name export)
+import circle, { personObj, square } from "./circle.js";
 
+circle(20); // Default exports works here
+square(47); // Name exports
+console.log(personObj);
 ```
-
-##
 
 ```js
+// circle.js
+// Code Blok 1
+const circle = (arg) => console.log("Argument Circle " + arg);
 
+// Code Blok 2
+const square = (arg) => console.log("Argument Square " + arg);
+
+// Code Blok 3
+const personObj = { name: "Subroto", value: 1 };
+
+// ES6 Modules
+export default circle; // Default Exports
+export { square, personObj }; // Name exports
 ```
 
-##
+## 8.4 ES6 Tooling
+
+1. Transpiler: Translator + Compiler
+   ModernJs -> Babel -> ES5
+2. Bundler
+   file1.js + file2.js + file3.js -> WebPack -> bundle.js
+
+Initializing package.json
+
+```bash
+npm init --yes
+```
+
+## 8.5 Babel - 3 packeg need to install
+
+```bash
+npm i babel-cli@6.26.0 babel-core@6.26.0 babel-preset-env@1.6.1 --save-dev
+```
+
+```bash
+npm i babel-cli // Active command link like npm
+babel-core // Main files for transpiling
+babel-preset-env // All modern ES6 plugin for transfering. It include all
+--save-dev // Development depedency. It will not included in production only in development computer
+```
+
+Here "npm run babel" is typing command "babel --presets env index.js -o build/index.js" <br>
+its mean -o: Ouptup folder and file
 
 ```js
-
+  "scripts": {
+    "babel": "babel --presets env index.js -o build/index.js"
+  }
 ```
-
-##
 
 ```js
-
+// index.js
+const i = "Ok";
 ```
 
-##
+"npm run babel"
 
 ```js
+// build/index.js
+"use strict";
 
+var i = "Ok";
 ```
 
-##
+## 8.6 WebPack (Transpile + Combine all js + Minify )
 
-```js
+**All we do in 8.5 Babel to illustrate how babel works. In real life project we do not do this. If you use webpack then it autometically include this**<br>
 
+Move all js file in src/ folder <br>
+Install webpack-cli as devDependencies
+
+```bash
+npm i -D @webpack-cli/generators // Generate package.json, package-lock.json, node_modules
 ```
+
+Create dist/main.js
+
+```bash
+npm run build
+```
+
+Add -w (watch) then you need not to build every time. Just after adding -w run "npm run build" then change in src file will bundel in dist/main.js
+
+```bash
+"scripts": {
+  "build": "webpack --mode=production --node-env=production -w",
+}
+```
+
+NB: If we install any packeg globally(-g). So that we can use it in any project.
