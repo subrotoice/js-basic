@@ -1,5 +1,6 @@
 # JavaScript Basic
 
+[JS - React](https://gist.github.com/subrotoice/98eb2fcbcef23c733cd36e0575c2e37c)
 FireFox: SpiderMonkey<br>
 Chrome: v8
 
@@ -424,7 +425,7 @@ function isPrime(number) {
 }
 ```
 
-# Ch-5: Objects
+# Ch-5: Objects & Class
 
 ## 5.1 Basic
 
@@ -450,7 +451,11 @@ const circle = {
 circle.draw();
 ```
 
-## 5.2 Factory Function: Produce javascript object
+## 5.2 Factory Function: Return javascript object
+
+It doesn't require the use of new.
+
+1. Basic Factory Function
 
 ```js
 // Factory Function
@@ -470,9 +475,39 @@ const circle2 = createCircle(2);
 console.log(circle2);
 ```
 
+### 2. Factory Function with Private Data
+
+You can also use factory functions to create objects with private data by using closures.
+
+```javascript
+function createCounter() {
+  let count = 0; // Private variable
+
+  return {
+    increment() {
+      count++;
+      console.log(`Count is now: ${count}`);
+    },
+    getCount() {
+      return count;
+    },
+  };
+}
+
+const counter1 = createCounter();
+counter1.increment(); // Output: Count is now: 1
+counter1.increment(); // Output: Count is now: 2
+console.log(counter1.getCount()); // Output: 2
+```
+
+In this example:
+
+- The `count` variable is private and can only be accessed or modified through the methods `increment` and `getCount`.
+- This encapsulation is achieved using closures, where the returned object retains access to the `count` variable even after the `createCounter` function has finished executing.
+
 ## 5.3 Constructor Functions
 
-- this keyword return from here under the hood.
+A constructor function is just a regular function, but when used with the `new` keyword, it creates a new object, sets `this` to that object, and returns the object automatically.
 
 ```js
 // Pascal Notation
@@ -487,6 +522,37 @@ function Circle(radius) {
 const circle = new Circle(5);
 console.log(circle);
 ```
+
+This approach was the standard way to implement object-oriented patterns in JavaScript before the introduction of the `class` syntax in ES6.
+
+## Different between Factory and Constructor function
+
+- A factory function is a regular function without using the `new` keyword that returns an object.
+- A constructor function is also a regular function but is intended to be used with the `new` keyword. It creates a new object, assigns `this` to that object, and returns it.
+
+  ```javascript
+  function Person(name, age) {
+    this.name = name;
+    this.age = age;
+
+    this.greet = function () {
+      console.log(
+        `Hello, my name is ${this.name} and I am ${this.age} years old.`
+      );
+    };
+  }
+
+  const person = new Person("Alice", 30);
+  ```
+
+- **Factory Functions**:
+
+  - Offer more flexibility and are simpler, especially for smaller, more straightforward objects.
+  - Easier to handle private data using closures.
+
+- **Constructor Functions**:
+  - Better suited for scenarios where you want to create multiple instances with shared methods (using prototypes).
+  - Align more closely with traditional object-oriented programming and support inheritance.
 
 ## 5.4 Dynamic Nature of Objects
 
@@ -534,6 +600,115 @@ increase(obj);
 console.log(increase(obj)); // Undefine
 console.log(obj);
 ```
+
+## Class
+
+In JavaScript, you can create and declare classes and objects using the `class` syntax, which is a template for creating objects. The objects created from a class are called instances. Here’s a basic guide to creating and declaring classes and objects in JavaScript:
+
+### 1. Declaring a Class
+
+You can declare a class using the `class` keyword. A class can have a constructor method, which is a special method for creating and initializing an object created with a class.
+
+```javascript
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  // Method inside the class
+  greet() {
+    console.log(
+      `Hello, my name is ${this.name} and I am ${this.age} years old.`
+    );
+  }
+}
+```
+
+In this example:
+
+- The `Person` class is declared with a constructor that takes `name` and `age` as parameters.
+- The `greet` method is defined to display a message using the class properties.
+
+### 2. Creating an Object (Instance of a Class)
+
+You can create an object from a class using the `new` keyword.
+
+```javascript
+const person1 = new Person("Alice", 30);
+const person2 = new Person("Bob", 25);
+
+// Accessing properties
+console.log(person1.name); // Output: Alice
+console.log(person2.age); // Output: 25
+
+// Calling methods
+person1.greet(); // Output: Hello, my name is Alice and I am 30 years old.
+person2.greet(); // Output: Hello, my name is Bob and I am 25 years old.
+```
+
+Here:
+
+- `person1` and `person2` are objects created from the `Person` class.
+- The properties `name` and `age` are initialized with values provided during the object creation.
+
+### 3. Adding Static Methods and Properties
+
+Static methods and properties belong to the class itself rather than to instances of the class.
+
+```javascript
+class Calculator {
+  static add(a, b) {
+    return a + b;
+  }
+}
+
+console.log(Calculator.add(5, 3)); // Output: 8
+```
+
+- The `add` method is a static method that can be called on the class itself, not on instances.
+
+### 4. Inheritance
+
+You can create a new class that inherits from an existing class using the `extends` keyword.
+
+```javascript
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+
+  speak() {
+    console.log(`${this.name} makes a sound.`);
+  }
+}
+
+class Dog extends Animal {
+  constructor(name, breed) {
+    super(name); // Call the parent class constructor
+    this.breed = breed;
+  }
+
+  speak() {
+    console.log(`${this.name} barks.`);
+  }
+}
+
+const dog = new Dog("Rex", "German Shepherd");
+dog.speak(); // Output: Rex barks.
+```
+
+- The `Dog` class extends the `Animal` class, inheriting its properties and methods.
+- The `super` keyword is used to call the constructor of the parent class.
+
+### Summary
+
+- **Class Declaration:** Define a class with properties and methods.
+- **Object Creation:** Create objects (instances) using the `new` keyword.
+- **Static Methods:** Define methods that belong to the class itself.
+- **Inheritance:** Create new classes based on existing ones using `extends`.
+
+This is the modern way to work with classes and objects in JavaScript, which aligns with object-oriented programming principles.
 
 ## 5.6 Math [See](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math)
 
@@ -714,6 +889,7 @@ numbers.push(5, 6); // 3, 4 => 3, 4, 5, 6
 numbers.unshift(1, 2); // 3, 4 => 1, 2, 3, 4
 
 // Middle | (start index, items you want to remove, adding items)
+// splice(from where, how many, [?new adding items])
 numbers.splice(2, 0, "a", "b"); // So, it do both delete and adding
 
 // With clever parameter setting, you can use splice() to remove elements without leaving "holes" in the array:
@@ -1770,3 +1946,364 @@ Add -w (watch) then you need not to build every time. Just after adding -w run "
 ```
 
 NB: If we install any packeg globally(-g). So that we can use it in any project.
+
+# 5 useful cheat sheets for Javascript
+
+[![d1P0SPp.md.jpg](https://iili.io/d1P0SPp.md.jpg)](https://freeimage.host/i/d1P0SPp)
+[![d1P08VR.md.jpg](https://iili.io/d1P08VR.md.jpg)](https://freeimage.host/i/d1P08VR)
+[![d1P0vov.md.jpg](https://iili.io/d1P0vov.md.jpg)](https://freeimage.host/i/d1P0vov)
+[![d1P0eDJ.md.jpg](https://iili.io/d1P0eDJ.md.jpg)](https://freeimage.host/i/d1P0eDJ)
+[![d1P0gKN.md.jpg](https://iili.io/d1P0gKN.md.jpg)](https://freeimage.host/i/d1P0gKN)
+[![d1P0rlI.md.jpg](https://iili.io/d1P0rlI.md.jpg)](https://freeimage.host/i/d1P0rlI)
+[![d1P0sNs.md.jpg](https://iili.io/d1P0sNs.md.jpg)](https://freeimage.host/i/d1P0sNs)
+[![d1P0iRn.md.jpg](https://iili.io/d1P0iRn.md.jpg)](https://freeimage.host/i/d1P0iRn)
+[![d1P0LDG.md.jpg](https://iili.io/d1P0LDG.md.jpg)](https://freeimage.host/i/d1P0LDG)
+
+# 25 js Problem solving [YouTube](https://www.youtube.com/watch?v=qJGR9lLcRc0)
+
+1 - Given a string, reverse each word in the sentence<br>
+2 - How to check if an object is an array or not? Provide some code.<br>
+3 - How to empty an array in JavaScript?<br>
+4 - How would you check if a number is an integer?<br>
+5 - Make this work : duplicate([1, 2, 3, 4, 5]); // [1, 2, 3, 4, 5, 1, 2, 3 ,4, 5]<br>
+
+Functions ---------------<br>
+6 - Write a JavaScript function that reverse a number<br>
+7 - Write a JavaScript function that checks whether a passed string is palindrome or not<br>
+8 - Write a js function that returns a passed string with letters in alphabetical order<br>
+9 - Write a JavaScript function that accepts a string as a parameter and converts the first letter of each word of the string in upper case<br>
+10 - Write a JavaScript function which accepts an argument and returns the type<br>
+
+---
+
+11: Write a javascript function to get the number of occurrences of each letter in specified string?<br>
+12: Sum element of an array<br>
+13: Sum only numbers of an array<br>
+14: Filter out all Female<br>
+15: Find Type of Element<br>
+16: Find most frequent element of an Array<br>
+17: Write a js program to shuffle an array.<br>
+18: Palindrome<br>
+19: Write a js program to compute the union of two arrays. ex: union([1, 2, 3], [4, 5, 6]) => [1, 2, 3, 4, 5, 6]
+
+## Problem 1: Given a string, reverse each word in the sentence
+
+Bangladesh is a beautiful Country => hsedalgnaB si a lufituaeb yrtnuoC
+
+```js
+let sentence = "Bangladesh is a beautiful Country";
+let words = sentence.split(" "); // hsedalgnaB si a lufituaeb yrtnuoC
+
+let newReverseWords = words.map((word) => word.split("").reverse().join(""));
+// ['hsedalgnaB', 'si', 'a', 'lufituaeb', 'yrtnuoC']
+
+console.log(newReverseWords.join(" ")); // hsedalgnaB si a lufituaeb yrtnuoC
+```
+
+## Problem 2: How to check if an object is an array or not? Provide some code.
+
+typeof will not work. both [], {} are object by typeof
+
+```js
+let arr = [1, 2, 3];
+checkArray([]);
+checkArray({});
+checkArray(arr);
+
+function checkArray(input) {
+  console.log(Array.isArray(input));
+}
+```
+
+## Problem 3: How to empty an array in JavaScript?
+
+```js
+let arr = [1, 2, 3];
+
+// Method 1
+arr = [];
+
+// Method 2
+arr.length = 0;
+
+// Method 3
+arr.splice(0, arr.length);
+
+console.log(arr);
+```
+
+## Problem 4: How would you check if a number is an integer?
+
+```js
+function checkInt(input) {
+  return typeof input == "string";
+}
+
+function checkIntWithNumberClass(input) {
+  return Number.isInteger(input);
+}
+
+function checkIntWithLogic(input) {
+  if (input % 1 == 0) return "Integer";
+
+  return "Not Integer";
+}
+
+console.log(checkInt(33));
+console.log(checkIntWithLogic("ds"));
+console.log(checkIntWithNumberClass(55));
+```
+
+## Problem 5: Make this work : duplicate([1, 2, 3, 4, 5]); // [1, 2, 3, 4, 5, 1, 2, 3 ,4, 5]
+
+```js
+let arr = [1, 2, 3, 4];
+
+function duplicateArrayElement(arr) {
+  return [...arr, ...arr];
+}
+
+function duplicateArrayElementWithConcat(arr) {
+  return arr.concat(arr);
+}
+
+console.log(duplicateArrayElement(arr));
+console.log(duplicateArrayElementWithConcat(arr));
+```
+
+## Problem 6: Write a JavaScript function that reverse a number?
+
+```js
+function reverseNumber(num) {
+  let reverseNumber = 0;
+
+  while (num != 0) {
+    reverseNumber = reverseNumber * 10 + (num % 10);
+    num = parseInt(num / 10);
+  }
+
+  return reverseNumber;
+}
+
+console.log(reverseNumber(1236));
+```
+
+## Problem 7: Write a JavaScript function that checks whether a passed string is palindrome or not?
+
+```js
+function isPalindrome(str) {
+  let strRev = str.split("").reverse().join("");
+  return str === strRev;
+}
+
+console.log(isPalindrome("abcba"));
+console.log(isPalindrome("abcba1"));
+```
+
+## Problem 8: Write a js function that returns a passed string with letters in alphabetical order
+
+```js
+function isPalindrome(str) {
+  let strRev = str.split("").sort().join("");
+  return strRev;
+  //   return str.split("").sort().join("");
+}
+
+console.log(isPalindrome("abcba"));
+```
+
+## Problem 9: Write a JavaScript function that accepts a string as a parameter and converts the first letter of each word of the string in upper case
+
+```js
+function capitalized(str) {
+  let strArr = str.split(" ");
+  let capitalizedStr = strArr.map(
+    (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
+  );
+  return capitalizedStr;
+}
+
+console.log(capitalized("My name is subroto BisWas"));
+```
+
+## Problem 10: Write a JavaScript function which accepts an argument and returns the type
+
+```js
+// typeof is a easy solution
+```
+
+## Problem 11: Write a javascript function to get the number of occurrences of each letter in specified string?
+
+```js
+// Solution 1: My Self
+function occurrenceOfChar(input) {
+  let inputArr = input.split("");
+  let output = [];
+
+  inputArr.map((c) => {
+    if (output[c]) {
+      output[c] = output[c] + 1;
+    } else output[c] = 1;
+
+    return c + ": " + output[c];
+  });
+
+  return output;
+}
+
+let result = occurrenceOfChar("appleccd");
+
+Object.entries(result).forEach(([key, value]) => {
+  console.log(`${key}: ${value}`);
+});
+```
+
+```js
+// Solutioin 2
+function occurrenceOfChar(input) {
+  let occurrence = {};
+
+  input.split("").forEach((element) => {
+    if (occurrence.hasOwnProperty(element)) occurrence[element]++;
+    else occurrence[element] = 1;
+  });
+
+  return occurrence;
+}
+
+console.log(occurrenceOfChar("appleccd"));
+```
+
+## Problem 12: Sum element of an array
+
+```js
+var arr = [1, 2, 3, 4, 5, 6];
+var sum = 0;
+
+arr.forEach((element) => (sum += element));
+
+console.log(sum);
+```
+
+## Problem 13: Sum only numbers of an array
+
+```js
+var arr = ["Myname", 2, "t", 4, "test", 6, 10];
+var sum = 0;
+
+arr.forEach((element) => {
+  if (typeof element === "number") {
+    sum += element;
+  }
+});
+
+console.log(sum);
+```
+
+## Problem 14: Filter out all Female
+
+```js
+var users = [
+  { name: "Subroto", genter: "Male" },
+  { name: "Kumar", genter: "Male" },
+  { name: "Biswas", genter: "Male" },
+  { name: "Sobita", genter: "Female" },
+  { name: "Srabonee", genter: "Female" },
+  { name: "Kanon", genter: "Male" },
+];
+
+var newUsers = users.filter((user) => user.genter == "Male");
+
+console.log(newUsers);
+```
+
+## Problem 15: Find Type of Element
+
+```js
+function itemType(element) {
+  if (Array.isArray(element)) return "array";
+  return typeof element;
+}
+
+console.log(itemType([]));
+console.log(itemType({}));
+console.log(itemType(22));
+console.log(itemType("stringOk"));
+console.log(itemType(true));
+console.log(itemType(undefined));
+console.log(itemType(function () {}));
+```
+
+## Problem 16: Find most frequent element of an Array
+
+```js
+function freq(input) {
+  if (!Array.isArray(input)) return "Item not array";
+
+  let tempObj = {};
+
+  input.forEach(function (element) {
+    if (tempObj.hasOwnProperty(element)) tempObj[element]++;
+    else tempObj[element] = 1;
+  });
+
+  //   debugger;
+  return Object.keys(tempObj).reduce((acc, curr) => {
+    return tempObj[curr] > tempObj[acc] ? curr : acc;
+  });
+}
+
+console.log(freq([1, 2, 3, 4, 5, 6, 2, 3, 2, 4, 2, 6, 7, 4, 4, 4, 4]));
+```
+
+## Problem 17: Write a js program to shuffle an array.
+
+```js
+function shuffle(input) {
+  console.log(input);
+  let l = input.length;
+  // console.log(l);
+
+  for (let i = l - 1; i >= 0; i--) {
+    let randomNumber = Math.floor(Math.random() * (i + 1));
+    let temp = input[randomNumber];
+    input[randomNumber] = input[i];
+    input[i] = temp;
+  }
+
+  console.log(input);
+}
+
+console.log(shuffle([1, 2, 3, 4, 5]));
+```
+
+## Problem 18: Palindrome
+
+```js
+function palindrome(input) {
+  var length = input.length;
+  if (length == 1) return true;
+
+  if (input[0] != input[length - 1]) return false;
+  var subStr = input.slice(1, length - 1);
+  return palindrome(subStr);
+}
+
+console.log(palindrome("madam"));
+```
+
+## Problem 19: Write a js program to compute the union of two arrays. ex: union([1, 2, 3], [4, 5, 6]) => [1, 2, 3, 4, 5, 6]
+
+```js
+function union(arr1, arr2) {
+  return [...new Set(arr1.concat(arr2))];
+}
+
+console.log(union([1, 2, 6, 3], [4, 5, 3]));
+```
+
+## Problem :
+
+```js
+
+```
