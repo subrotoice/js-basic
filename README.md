@@ -531,6 +531,7 @@ This approach was the standard way to implement object-oriented patterns in Java
 - A constructor function is also a regular function but is intended to be used with the `new` keyword. It creates a new object, assigns `this` to that object, and returns it.
 
   ```javascript
+  // Constructor Function
   function Person(name, age) {
     this.name = name;
     this.age = age;
