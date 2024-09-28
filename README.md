@@ -552,8 +552,83 @@ This approach was the standard way to implement object-oriented patterns in Java
   - Easier to handle private data using closures.
 
 - **Constructor Functions**:
+
   - Better suited for scenarios where you want to create multiple instances with shared methods (using prototypes).
   - Align more closely with traditional object-oriented programming and support inheritance.
+
+## In JavaScript, there are 6 ways to create objects.
+
+1. Object Literal Notation
+
+```js
+let obj = {
+  name: "John",
+  age: 30,
+  greet: function () {
+    console.log("Hello!");
+  },
+};
+```
+
+2. Using new Object()
+
+```js
+let obj = new Object();
+obj.name = "John";
+obj.age = 30;
+obj.greet = function () {
+  console.log("Hello!");
+};
+```
+
+3. Using a Constructor Function
+
+```js
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.greet = function () {
+    console.log("Hello!");
+  };
+}
+
+let person1 = new Person("John", 30);
+```
+
+4. Using ES6 class Syntax
+
+```js
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  greet() {
+    console.log("Hello!");
+  }
+}
+
+let person1 = new Person("John", 30);
+```
+
+5. Using Object.create() | Not So Imp
+
+6. Using Factory Functions
+
+```js
+function createPerson(name, age) {
+  return {
+    name: name,
+    age: age,
+    greet() {
+      console.log("Hello!");
+    },
+  };
+}
+
+let person1 = createPerson("John", 30);
+```
 
 ## 5.4 Dynamic Nature of Objects
 
