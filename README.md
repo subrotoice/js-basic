@@ -1,6 +1,17 @@
 # JavaScript Basic
 
+CH1 https://github.com/subrotoice/js-basic#javascript-basic
+Ch2 https://github.com/subrotoice/js-basic#ch-2-basics
+ch3 https://github.com/subrotoice/js-basic#ch-3-operators
+CH-4: https://github.com/subrotoice/js-basic#ch-4-control-flow
+Ch-5: https://github.com/subrotoice/js-basic#ch-5-objects--class
+ch-6: https://github.com/subrotoice/js-basic#ch-6-arrays
+ch-7: https://github.com/subrotoice/js-basic#ch-7-functions
+
 [JS - React](https://gist.github.com/subrotoice/98eb2fcbcef23c733cd36e0575c2e37c)
+
+# Ch-1: Basics
+
 FireFox: SpiderMonkey<br>
 Chrome: v8
 
@@ -15,7 +26,7 @@ console.log("Hello World");
 alert("yo");
 ```
 
-# Ch-2 Basics
+# Ch-2: Basics
 
 ## 2.1 Variables
 
@@ -109,6 +120,155 @@ function square(number) {
 
 greet("Subroto", "Biswas");
 console.log(square(3));
+```
+
+## 2.5 Map and Set
+
+Map is a collection of keyed data items, just like an Object. But the main difference is that Map allows keys of any type. Any keys, objects can be keys.
+Object key is converted to string. [See](https://prnt.sc/lj18S9Th3HIt)
+
+```js
+let map = new Map();
+
+map.set("1", "str1"); // a string key
+map.set(1, "num1"); // a numeric key
+map.set(true, "bool1"); // a boolean key
+
+// remember the regular Object? it would convert keys to string
+// Map keeps the type, so these two are different:
+alert(map.get(1)); // 'num1'
+alert(map.get("1")); // 'str1'
+
+alert(map.size); // 3
+```
+
+Map can also use objects as keys.
+
+```js
+let john = { name: "John" };
+// for every user, let's store their visits count
+let visitsCountMap = new Map();
+// john is the key for the map
+visitsCountMap.set(john, 123);
+
+console.log(visitsCountMap.get(john)); // 123
+console.log(visitsCountMap); // Map(1) { { name: 'John' } => 123 }
+```
+
+### Iteration over Map
+
+For looping over a map, there are 3 methods:
+
+map.keys() – returns an iterable for keys,
+map.values() – returns an iterable for values,
+map.entries() – returns an iterable for entries [key, value], it’s used by default in for..of.
+
+```js
+let recipeMap = new Map([
+  ["cucumber", 500],
+  ["tomatoes", 350],
+  ["onion", 50],
+]);
+
+for (let vegi of recipeMap.keys()) console.log(vegi);
+for (let vegi of recipeMap.values()) console.log(vegi);
+for (let vegi of recipeMap.entries()) console.log(vegi);
+for ((let entry of recipeMap)) console.log(vegi); // Same
+// the same as of recipeMap.entries()
+
+// cucumber
+// tomatoes
+// onion
+
+// 500
+// 350
+// 50
+
+// [ 'cucumber', 500 ]
+// [ 'tomatoes', 350 ]
+// [ 'onion', 50 ]
+```
+
+### Map from array
+
+When a Map is created, we can pass an array with key/value pairs for initialization
+
+```js
+// array of [key, value] pairs
+let map = new Map([
+  ["1", "str1"],
+  [1, "num1"],
+  [true, "bool1"],
+]);
+
+console.log(map.get(1));
+```
+
+### Map from object
+
+If we have a plain object, and we’d like to create a Map from it, then we can use built-in method Object.entries(obj) that returns an array of key/value pairs for an object.
+
+```js
+let obj = {
+  name: "John",
+  age: 30,
+};
+// Obj to two dimentional array
+console.log(Object.entries(obj)); // [ [ 'name', 'John' ], [ 'age', 30 ] ]
+
+let map = new Map(Object.entries(obj));
+
+console.log(map.get("name")); // John
+```
+
+### **Object.fromEntries: Map to Object**
+
+```jsx
+let map = new Map();
+map.set("banana", 1);
+map.set("orange", 2);
+map.set("meat", 4);
+
+// Convert to array with key/value
+console.log(map.entries()); // { [ 'banana', 1 ], [ 'orange', 2 ], [ 'meat', 4 ] }
+let obj = Object.fromEntries(map.entries()); // make a plain object (*)
+let obj1 = Object.fromEntries(map); // Same
+
+console.log(obj); // 2
+```
+
+### **Set**
+
+A Set is a special type collection – “set of values” (without keys), where each value may occur only once.
+
+```js
+let set = new Set();
+
+let john = { name: "John" };
+let pete = { name: "Pete" };
+let mary = { name: "Mary" };
+
+// visits, some users come multiple times
+set.add(john);
+set.add(pete);
+set.add(mary);
+set.add(john);
+set.add(mary);
+
+// set keeps only unique values
+console.log(set.size); // 3
+
+for (let user of set) {
+  console.log(user.name); // John (then Pete and Mary)
+}
+```
+
+### **Iteration over Set**
+
+```js
+let set = new Set(["oranges", "apples", "bananas"]);
+
+for (let value of set) console.log(value);
 ```
 
 # Ch-3 Operators
