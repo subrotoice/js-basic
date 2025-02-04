@@ -1,16 +1,86 @@
-# JavaScript Basic
+# Chapters
 
-CH1 https://github.com/subrotoice/js-basic#javascript-basic
-Ch2 https://github.com/subrotoice/js-basic#ch-2-basics
-ch3 https://github.com/subrotoice/js-basic#ch-3-operators
-CH-4: https://github.com/subrotoice/js-basic#ch-4-control-flow
-Ch-5: https://github.com/subrotoice/js-basic#ch-5-objects--class
-ch-6: https://github.com/subrotoice/js-basic#ch-6-arrays
-ch-7: https://github.com/subrotoice/js-basic#ch-7-functions
+[Ch-1: Introduction](https://github.com/subrotoice/js-basic#ch-1-introduction)<br>
+[Ch-2: Javascript Basics](https://github.com/subrotoice/js-basic#ch-2-javascript-basics)<br>
+
+- 2.1 Variables
+- 2.2 Object
+- 2.3 Arrays
+- 2.4 Function
+- 2.5 Map and Set
+
+[Ch-3: Operators](https://github.com/subrotoice/js-basic#ch-3-operators)<br>
+
+- 3.1 Comparison Operators
+- 3.2 Equality Operators
+- 3.3 Ternary Operator
+- 3.4 Logical Operators
+
+[Ch-4: Control Flow](https://github.com/subrotoice/js-basic#ch-4-control-flow)<br>
+
+- 4.1 For...in (object) & For...of (array)
+
+[Ch-5: Objects & Class](https://github.com/subrotoice/js-basic#ch-5-objects--class)<br>
+
+- 5.1 Basic
+- 5.2 Factory Function: Return javascript object
+- 5.3 Factory Function with Private Data
+- 5.4 Constructor Functions
+- 5.5 Different between Factory and Constructor function
+- 5.6 In JavaScript, there are 6 ways to create objects.
+- 5.7 Dynamic Nature of Objects
+- 5.8 Object store in address
+- 5.9 Declaring a Class
+- 5.10 Creating an Object (Instance of a Class)
+- 5.11 Adding Static Methods and Properties
+- 5.12 Inheritance
+- 5.13 Math
+- 5.14 String
+- 5.15 Date
+
+[Ch-6: Arrays](https://github.com/subrotoice/js-basic#ch-6-arrays)<br>
+
+- 6.1 Adding array
+- 6.2 Finding Elements (Primitives)
+- 6.3 Finding Elements (Object)
+- 6.4 Removing Elements
+- 6.5 Emptying an Array
+- 6.6 Combining and Slicing Arrays & The Spread Operator
+- 6.7 Iterating an Array
+- 6.8 Joining Arrays
+- 6.9 Sorting Arrays
+- 6.10 Testing the Elements of an Array
+- 6.11 Filter
+- 6.12 Mapping
+- 6.13 Reducing an Array
+
+[Ch-7: Functions](https://github.com/subrotoice/js-basic#ch-7-functions)<br>
+
+- 7.1- Function Declarations vs Expressions
+- 7.2 - Hoisting
+- 7.3 - Arguments
+- 7.4- The Rest Operator
+- 7.5- Default Parameters
+- 7.6- Getters and Setters
+- 7.7- Try and Catch
+- 7.8- Local vs Global Scope
+- 7.9- Let vs Var
+- 7.10- The this Keyword
+- 7.11- Changing this
+
+[Ch-8: ES6 Tooling](https://github.com/subrotoice/js-basic#ch-8-es6-tooling)<br>
+
+- 8.1 Modules
+- 8.2 CommonJS Modules (only for Node.js)
+- 8.3 ES6 Modules
+- 8.4 ES6 Tooling
+- 8.5 Babel - 3 packeg need to install
+- 8.6 WebPack (Transpile + Combine all js + Minify )
+- 5 useful cheat sheets for Javascript
 
 [JS - React](https://gist.github.com/subrotoice/98eb2fcbcef23c733cd36e0575c2e37c)
 
-# Ch-1: Basics
+# Ch-1: Introduction
 
 FireFox: SpiderMonkey<br>
 Chrome: v8
@@ -26,7 +96,7 @@ console.log("Hello World");
 alert("yo");
 ```
 
-# Ch-2: Basics
+# Ch-2: Javascript Basics
 
 ## 2.1 Variables
 
@@ -127,12 +197,22 @@ console.log(square(3));
 Map is a collection of keyed data items, just like an Object. But the main difference is that Map allows keys of any type. Any keys, objects can be keys.
 Object key is converted to string. [See](https://prnt.sc/lj18S9Th3HIt)
 
+- new Map() – creates the map.
+- map.set(key, value) – stores the value by the key.
+- map.get(key) – returns the value by the key, undefined if key doesn’t exist in map.
+- map.has(key) – returns true if the key exists, false otherwise.
+- map.delete(key) – removes the element (the key/value pair) by the key.
+- map.clear() – removes everything from the map.
+- map.size – returns the current element count.
+
 ```js
 let map = new Map();
 
 map.set("1", "str1"); // a string key
 map.set(1, "num1"); // a numeric key
 map.set(true, "bool1"); // a boolean key
+
+map.has("1"); // True
 
 // remember the regular Object? it would convert keys to string
 // Map keeps the type, so these two are different:
@@ -241,6 +321,13 @@ console.log(obj); // 2
 
 A Set is a special type collection – “set of values” (without keys), where each value may occur only once.
 
+- new Set([iterable]) – creates the set, and if an iterable object is provided (usually an array), copies values from it into the set.
+- set.add(value) – adds a value, returns the set itself.
+- set.delete(value) – removes the value, returns true if value existed at the moment of the call, otherwise false.
+- set.has(value) – returns true if the value exists in the set, otherwise false.
+- set.clear() – removes everything from the set.
+- set.size – is the elements count.
+
 ```js
 let set = new Set();
 
@@ -254,6 +341,8 @@ set.add(pete);
 set.add(mary);
 set.add(john);
 set.add(mary);
+
+set.has(mary); // true
 
 // set keeps only unique values
 console.log(set.size); // 3
@@ -271,7 +360,7 @@ let set = new Set(["oranges", "apples", "bananas"]);
 for (let value of set) console.log(value);
 ```
 
-# Ch-3 Operators
+# Ch-3: Operators
 
 ## 3.1 Comparison Operators
 
@@ -356,7 +445,7 @@ console.log(userColor || defaultColor) // Here the user did not pick a color, th
 
 [Quiz](https://github.com/jmschp/mosh-ultimate-javascript-mastery-series-part-1/blob/main/03%20Operators/11-%20Quiz.md)
 
-# Ch-4 Control Flow
+# Ch-4: Control Flow
 
 ## 4.1 For...in (object) & For...of (array)
 
@@ -635,7 +724,7 @@ const circle2 = createCircle(2);
 console.log(circle2);
 ```
 
-### 2. Factory Function with Private Data
+### 5.3 Factory Function with Private Data
 
 You can also use factory functions to create objects with private data by using closures.
 
@@ -665,7 +754,7 @@ In this example:
 - The `count` variable is private and can only be accessed or modified through the methods `increment` and `getCount`.
 - This encapsulation is achieved using closures, where the returned object retains access to the `count` variable even after the `createCounter` function has finished executing.
 
-## 5.3 Constructor Functions
+## 5.4 Constructor Functions
 
 A constructor function is just a regular function, but when used with the `new` keyword, it creates a new object, sets `this` to that object, and returns the object automatically.
 
@@ -685,7 +774,7 @@ console.log(circle);
 
 This approach was the standard way to implement object-oriented patterns in JavaScript before the introduction of the `class` syntax in ES6.
 
-## Different between Factory and Constructor function
+## 5.5 Different between Factory and Constructor function
 
 - A factory function is a regular function without using the `new` keyword that returns an object.
 - A constructor function is also a regular function but is intended to be used with the `new` keyword. It creates a new object, assigns `this` to that object, and returns it.
@@ -716,7 +805,7 @@ This approach was the standard way to implement object-oriented patterns in Java
   - Better suited for scenarios where you want to create multiple instances with shared methods (using prototypes).
   - Align more closely with traditional object-oriented programming and support inheritance.
 
-## In JavaScript, there are 6 ways to create objects.
+## 5.6 In JavaScript, there are 6 ways to create objects.
 
 1. Object Literal Notation
 
@@ -790,7 +879,7 @@ function createPerson(name, age) {
 let person1 = createPerson("John", 30);
 ```
 
-## 5.4 Dynamic Nature of Objects
+## 5.7 Dynamic Nature of Objects
 
 -In JavaScript object are dynamic, once they are created we can add new properties or methods to it.
 
@@ -810,7 +899,7 @@ delete circle.color;
 console.log(circle);
 ```
 
-## 5.5 Object store in address
+## 5.8 Object store in address
 
 In using object they are not stored in the variable. They are stored somewhere in the memory, and the address (or the reference) of that place in memory is store in the variable.
 
@@ -841,7 +930,7 @@ console.log(obj);
 
 In JavaScript, you can create and declare classes and objects using the `class` syntax, which is a template for creating objects. The objects created from a class are called instances. Here’s a basic guide to creating and declaring classes and objects in JavaScript:
 
-### 1. Declaring a Class
+### 5.9 Declaring a Class
 
 You can declare a class using the `class` keyword. A class can have a constructor method, which is a special method for creating and initializing an object created with a class.
 
@@ -866,7 +955,7 @@ In this example:
 - The `Person` class is declared with a constructor that takes `name` and `age` as parameters.
 - The `greet` method is defined to display a message using the class properties.
 
-### 2. Creating an Object (Instance of a Class)
+### 5.10 Creating an Object (Instance of a Class)
 
 You can create an object from a class using the `new` keyword.
 
@@ -888,7 +977,7 @@ Here:
 - `person1` and `person2` are objects created from the `Person` class.
 - The properties `name` and `age` are initialized with values provided during the object creation.
 
-### 3. Adding Static Methods and Properties
+### 5.11 Adding Static Methods and Properties
 
 Static methods and properties belong to the class itself rather than to instances of the class.
 
@@ -904,7 +993,7 @@ console.log(Calculator.add(5, 3)); // Output: 8
 
 - The `add` method is a static method that can be called on the class itself, not on instances.
 
-### 4. Inheritance
+### 5.12 Inheritance
 
 You can create a new class that inherits from an existing class using the `extends` keyword.
 
@@ -946,7 +1035,7 @@ dog.speak(); // Output: Rex barks.
 
 This is the modern way to work with classes and objects in JavaScript, which aligns with object-oriented programming principles.
 
-## 5.6 Math [See](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math)
+## 5.13 Math [See](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math)
 
 ```js
 // Pi property
@@ -960,7 +1049,7 @@ console.log(Math.random());
 console.log(Math.max(1, 2, 5, 4, 7, 9, 6));
 ```
 
-## 5.7 String
+## 5.14 String
 
 ```js
 // String Primitive
@@ -991,7 +1080,7 @@ console.log(message); // Hi Subroto 5
 // How are you?
 ```
 
-## 5.8 Date
+## 5.15 Date
 
 ```js
 const now = new Date();
