@@ -1,16 +1,86 @@
-# JavaScript Basic
+# Chapters
 
-CH1 https://github.com/subrotoice/js-basic#javascript-basic
-Ch2 https://github.com/subrotoice/js-basic#ch-2-basics
-ch3 https://github.com/subrotoice/js-basic#ch-3-operators
-CH-4: https://github.com/subrotoice/js-basic#ch-4-control-flow
-Ch-5: https://github.com/subrotoice/js-basic#ch-5-objects--class
-ch-6: https://github.com/subrotoice/js-basic#ch-6-arrays
-ch-7: https://github.com/subrotoice/js-basic#ch-7-functions
+[Ch-1: Introduction](https://github.com/subrotoice/js-basic#ch-1-introduction)<br>
+[Ch-2: Javascript Basics](https://github.com/subrotoice/js-basic#ch-2-javascript-basics)<br>
+
+- 2.1 Variables
+- 2.2 Object
+- 2.3 Arrays
+- 2.4 Function
+- 2.5 Map and Set
+
+[Ch-3: Operators](https://github.com/subrotoice/js-basic#ch-3-operators)<br>
+
+- 3.1 Comparison Operators
+- 3.2 Equality Operators
+- 3.3 Ternary Operator
+- 3.4 Logical Operators
+
+[Ch-4: Control Flow](https://github.com/subrotoice/js-basic#ch-4-control-flow)<br>
+
+- 4.1 For...in (object) & For...of (array)
+
+[Ch-5: Objects & Class](https://github.com/subrotoice/js-basic#ch-5-objects--class)<br>
+
+- 5.1 Basic
+- 5.2 Factory Function: Return javascript object
+- 5.3 Factory Function with Private Data
+- 5.4 Constructor Functions
+- 5.5 Different between Factory and Constructor function
+- 5.6 In JavaScript, there are 6 ways to create objects.
+- 5.7 Dynamic Nature of Objects
+- 5.8 Object store in address
+- 5.9 Declaring a Class
+- 5.10 Creating an Object (Instance of a Class)
+- 5.11 Adding Static Methods and Properties
+- 5.12 Inheritance
+- 5.13 Math
+- 5.14 String
+- 5.15 Date
+
+[Ch-6: Arrays](https://github.com/subrotoice/js-basic#ch-6-arrays)<br>
+
+- 6.1 Adding array
+- 6.2 Finding Elements (Primitives)
+- 6.3 Finding Elements (Object)
+- 6.4 Removing Elements
+- 6.5 Emptying an Array
+- 6.6 Combining and Slicing Arrays & The Spread Operator
+- 6.7 Iterating an Array
+- 6.8 Joining Arrays
+- 6.9 Sorting Arrays
+- 6.10 Testing the Elements of an Array
+- 6.11 Filter
+- 6.12 Mapping
+- 6.13 Reducing an Array
+
+[Ch-7: Functions](https://github.com/subrotoice/js-basic#ch-7-functions)<br>
+
+- 7.1- Function Declarations vs Expressions
+- 7.2 - Hoisting
+- 7.3 - Arguments
+- 7.4- The Rest Operator
+- 7.5- Default Parameters
+- 7.6- Getters and Setters
+- 7.7- Try and Catch
+- 7.8- Local vs Global Scope
+- 7.9- Let vs Var
+- 7.10- The this Keyword
+- 7.11- Changing this
+
+[Ch-8: ES6 Tooling](https://github.com/subrotoice/js-basic#ch-8-es6-tooling)<br>
+
+- 8.1 Modules
+- 8.2 CommonJS Modules (only for Node.js)
+- 8.3 ES6 Modules
+- 8.4 ES6 Tooling
+- 8.5 Babel - 3 packeg need to install
+- 8.6 WebPack (Transpile + Combine all js + Minify )
+- 5 useful cheat sheets for Javascript
 
 [JS - React](https://gist.github.com/subrotoice/98eb2fcbcef23c733cd36e0575c2e37c)
 
-# Ch-1: Basics
+# Ch-1: Introduction
 
 FireFox: SpiderMonkey<br>
 Chrome: v8
@@ -26,7 +96,7 @@ console.log("Hello World");
 alert("yo");
 ```
 
-# Ch-2: Basics
+# Ch-2: Javascript Basics
 
 ## 2.1 Variables
 
@@ -127,12 +197,22 @@ console.log(square(3));
 Map is a collection of keyed data items, just like an Object. But the main difference is that Map allows keys of any type. Any keys, objects can be keys.
 Object key is converted to string. [See](https://prnt.sc/lj18S9Th3HIt)
 
+- new Map() – creates the map.
+- map.set(key, value) – stores the value by the key.
+- map.get(key) – returns the value by the key, undefined if key doesn’t exist in map.
+- map.has(key) – returns true if the key exists, false otherwise.
+- map.delete(key) – removes the element (the key/value pair) by the key.
+- map.clear() – removes everything from the map.
+- map.size – returns the current element count.
+
 ```js
 let map = new Map();
 
 map.set("1", "str1"); // a string key
 map.set(1, "num1"); // a numeric key
 map.set(true, "bool1"); // a boolean key
+
+map.has("1"); // True
 
 // remember the regular Object? it would convert keys to string
 // Map keeps the type, so these two are different:
@@ -241,6 +321,13 @@ console.log(obj); // 2
 
 A Set is a special type collection – “set of values” (without keys), where each value may occur only once.
 
+- new Set([iterable]) – creates the set, and if an iterable object is provided (usually an array), copies values from it into the set.
+- set.add(value) – adds a value, returns the set itself.
+- set.delete(value) – removes the value, returns true if value existed at the moment of the call, otherwise false.
+- set.has(value) – returns true if the value exists in the set, otherwise false.
+- set.clear() – removes everything from the set.
+- set.size – is the elements count.
+
 ```js
 let set = new Set();
 
@@ -254,6 +341,8 @@ set.add(pete);
 set.add(mary);
 set.add(john);
 set.add(mary);
+
+set.has(mary); // true
 
 // set keeps only unique values
 console.log(set.size); // 3
@@ -271,7 +360,7 @@ let set = new Set(["oranges", "apples", "bananas"]);
 for (let value of set) console.log(value);
 ```
 
-# Ch-3 Operators
+# Ch-3: Operators
 
 ## 3.1 Comparison Operators
 
@@ -356,7 +445,7 @@ console.log(userColor || defaultColor) // Here the user did not pick a color, th
 
 [Quiz](https://github.com/jmschp/mosh-ultimate-javascript-mastery-series-part-1/blob/main/03%20Operators/11-%20Quiz.md)
 
-# Ch-4 Control Flow
+# Ch-4: Control Flow
 
 ## 4.1 For...in (object) & For...of (array)
 
@@ -635,7 +724,7 @@ const circle2 = createCircle(2);
 console.log(circle2);
 ```
 
-### 2. Factory Function with Private Data
+### 5.3 Factory Function with Private Data
 
 You can also use factory functions to create objects with private data by using closures.
 
@@ -665,7 +754,7 @@ In this example:
 - The `count` variable is private and can only be accessed or modified through the methods `increment` and `getCount`.
 - This encapsulation is achieved using closures, where the returned object retains access to the `count` variable even after the `createCounter` function has finished executing.
 
-## 5.3 Constructor Functions
+## 5.4 Constructor Functions
 
 A constructor function is just a regular function, but when used with the `new` keyword, it creates a new object, sets `this` to that object, and returns the object automatically.
 
@@ -685,7 +774,7 @@ console.log(circle);
 
 This approach was the standard way to implement object-oriented patterns in JavaScript before the introduction of the `class` syntax in ES6.
 
-## Different between Factory and Constructor function
+## 5.5 Different between Factory and Constructor function
 
 - A factory function is a regular function without using the `new` keyword that returns an object.
 - A constructor function is also a regular function but is intended to be used with the `new` keyword. It creates a new object, assigns `this` to that object, and returns it.
@@ -716,7 +805,7 @@ This approach was the standard way to implement object-oriented patterns in Java
   - Better suited for scenarios where you want to create multiple instances with shared methods (using prototypes).
   - Align more closely with traditional object-oriented programming and support inheritance.
 
-## In JavaScript, there are 6 ways to create objects.
+## 5.6 In JavaScript, there are 6 ways to create objects.
 
 1. Object Literal Notation
 
@@ -790,7 +879,7 @@ function createPerson(name, age) {
 let person1 = createPerson("John", 30);
 ```
 
-## 5.4 Dynamic Nature of Objects
+## 5.7 Dynamic Nature of Objects
 
 -In JavaScript object are dynamic, once they are created we can add new properties or methods to it.
 
@@ -810,7 +899,7 @@ delete circle.color;
 console.log(circle);
 ```
 
-## 5.5 Object store in address
+## 5.8 Object store in address
 
 In using object they are not stored in the variable. They are stored somewhere in the memory, and the address (or the reference) of that place in memory is store in the variable.
 
@@ -841,7 +930,7 @@ console.log(obj);
 
 In JavaScript, you can create and declare classes and objects using the `class` syntax, which is a template for creating objects. The objects created from a class are called instances. Here’s a basic guide to creating and declaring classes and objects in JavaScript:
 
-### 1. Declaring a Class
+### 5.9 Declaring a Class
 
 You can declare a class using the `class` keyword. A class can have a constructor method, which is a special method for creating and initializing an object created with a class.
 
@@ -866,7 +955,362 @@ In this example:
 - The `Person` class is declared with a constructor that takes `name` and `age` as parameters.
 - The `greet` method is defined to display a message using the class properties.
 
-### 2. Creating an Object (Instance of a Class)
+#### Ideal JavaScript and TypeScript Class
+
+```js
+/**
+ * Represents a customizable Animal with various characteristics and behaviors.
+ * This class demonstrates key JavaScript class features in an understandable way.
+ */
+class Animal {
+  // 1. Static Property: Belongs to the class itself, not instances.
+  static speciesCount = 0;
+
+  // 2. Private Class Fields (Newer JavaScript feature - prefixed with #):
+  //    Encapsulates data, making it only accessible within the class.
+  #secretTrait = "unknown";
+  #isMammal; // Will be set by the constructor
+
+  /**
+   * 3. Constructor: Special method for creating and initializing objects
+   * created with a class.
+   * @param {string} name - The name of the animal.
+   * @param {string} sound - The sound the animal makes.
+   * @param {number} age - The age of the animal in years.
+   * @param {boolean} isMammal - True if the animal is a mammal, false otherwise.
+   */
+  constructor(name, sound, age, isMammal) {
+    // 4. Instance Properties: Data specific to each object instance.
+    this.name = name;
+    this.sound = sound;
+    this.age = age;
+    this.#isMammal = isMammal; // Initialize private field
+    Animal.speciesCount++; // Increment static property on each new instance
+  }
+
+  // 5. Getter (Instance Method): Allows controlled access to instance properties.
+  //    Can also be used for computed properties.
+  get description() {
+    return `${this.name} is a ${this.age}-year-old animal that says "${this.sound}".`;
+  }
+
+  // 6. Setter (Instance Method): Allows controlled modification of instance properties.
+  set secret(trait) {
+    if (typeof trait === "string" && trait.length > 0) {
+      this.#secretTrait = trait;
+    } else {
+      console.warn("Invalid secret trait. Must be a non-empty string.");
+    }
+  }
+
+  // 7. Public Instance Method: Behavior that instances of the class can perform.
+  makeSound() {
+    console.log(`${this.name} says ${this.sound}!`);
+  }
+
+  // 8. Private Instance Method (Newer JavaScript feature - prefixed with #):
+  //    Helper method intended for internal use within the class.
+  #getMammalStatus() {
+    return this.#isMammal ? "a mammal" : "not a mammal";
+  }
+
+  // 9. Public Instance Method utilizing a private method.
+  getDetailedInfo() {
+    const mammalStatus = this.#getMammalStatus(); // Calling the private method
+    return `${this.name} (${this.age} years old) says "${
+      this.sound
+    }". It is ${mammalStatus}. Its secret is: ${this.#secretTrait}.`;
+  }
+
+  // 10. Static Method: Belongs to the class, not instances.
+  //     Often used for utility functions related to the class.
+  static getAnimalCount() {
+    return `There are currently ${Animal.speciesCount} animals created.`;
+  }
+
+  // 11. Method for demonstrating method chaining
+  grow(years) {
+    this.age += years;
+    console.log(
+      `${this.name} grew by ${years} years. Now ${this.age} years old.`
+    );
+    return this; // Return 'this' to allow chaining
+  }
+}
+
+/**
+ * 12. Inheritance: Creating a new class that inherits properties and methods
+ * from an existing class (the "parent" or "base" class).
+ */
+class Dog extends Animal {
+  constructor(name, age, breed) {
+    // 13. super() call: Must be called in the constructor of a subclass
+    //     before 'this' is used. It calls the parent class's constructor.
+    super(name, "Woof", age, true); // Dogs are always mammals, make sound "Woof"
+    this.breed = breed; // New instance property specific to Dog
+  }
+
+  // 14. Method Overriding: Providing a specific implementation of a method
+  //     that is already defined in the parent class.
+  makeSound() {
+    console.log(`${this.name} the ${this.breed} barks: WOOF WOOF!`);
+  }
+
+  // New method specific to Dog class
+  fetchBall() {
+    console.log(`${this.name} fetches the ball!`);
+  }
+}
+
+// --- Demonstrating the Class Features ---
+
+console.log("--- Animal Class Demonstrations ---");
+
+// Accessing a static property
+console.log(Animal.getAnimalCount()); // Output: There are currently 0 animals created.
+
+// Creating instances of Animal
+const lion = new Animal("Simba", "Roar", 5, true);
+const snake = new Animal("Kaa", "Hiss", 2, false);
+
+// Accessing instance properties
+console.log(`Lion's name: ${lion.name}`);
+console.log(`Snake's sound: ${snake.sound}`);
+
+// Calling instance methods
+lion.makeSound(); // Output: Simba says Roar!
+snake.makeSound(); // Output: Kaa says Hiss!
+
+// Accessing a getter
+console.log(lion.description); // Output: Simba is a 5-year-old animal that says "Roar".
+
+// Using a setter (modifying a private field)
+lion.secret = "King of the Jungle";
+// lion.#secretTrait; // Error: Private field '#secretTrait' must be declared in an enclosing class
+// snake.secret = 123; // Warns: Invalid secret trait...
+
+// Calling a public method that uses a private method and private field
+console.log(lion.getDetailedInfo()); // Output: Simba (5 years old) says "Roar". It is a mammal. Its secret is: King of the Jungle.
+console.log(snake.getDetailedInfo()); // Output: Kaa (2 years old) says "Hiss". It is not a mammal. Its secret is: unknown.
+
+// Accessing a static method
+console.log(Animal.getAnimalCount()); // Output: There are currently 2 animals created.
+
+// Demonstrating method chaining
+lion.grow(2).makeSound(); // Output: Simba grew by 2 years. Now 7 years old. \n Simba says Roar!
+
+console.log("\n--- Dog Class (Inheritance) Demonstrations ---");
+
+// Creating an instance of Dog (inherits from Animal)
+const buddy = new Dog("Buddy", 3, "Golden Retriever");
+
+// Accessing inherited properties
+console.log(`Buddy's name: ${buddy.name}`);
+console.log(`Buddy's age: ${buddy.age}`);
+console.log(`Buddy's breed: ${buddy.breed}`); // Specific to Dog class
+
+// Calling an overridden method
+buddy.makeSound(); // Output: Buddy the Golden Retriever barks: WOOF WOOF! (Overridden)
+
+// Calling an inherited method (that wasn't overridden)
+console.log(buddy.description); // Output: Buddy is a 3-year-old animal that says "Woof".
+
+// Calling a new method specific to Dog
+buddy.fetchBall(); // Output: Buddy fetches the ball!
+
+// Verify static count again
+console.log(Animal.getAnimalCount()); // Output: There are currently 3 animals created.
+```
+
+**TypeScript**
+
+```ts
+/**
+ * Represents a customizable Animal with various characteristics and behaviors.
+ * This class demonstrates key TypeScript class features, including type annotations.
+ */
+class Animal {
+  // 1. Static Property: Belongs to the class itself, not instances.
+  //    Type annotation `number` ensures it holds a number.
+  static speciesCount: number = 0;
+
+  // 2. Private Class Fields (Native TS and JS feature):
+  //    Encapsulates data, making it only accessible within the class.
+  //    Type annotations `string` and `boolean`.
+  #secretTrait: string = "unknown";
+  #isMammal: boolean; // Will be set by the constructor
+
+  // 3. Public Instance Properties (explicitly declared with type annotations)
+  name: string;
+  sound: string;
+  age: number;
+
+  /**
+   * 4. Constructor: Special method for creating and initializing objects
+   * created with a class.
+   * @param {string} name - The name of the animal.
+   * @param {string} sound - The sound the animal makes.
+   * @param {number} age - The age of the animal in years.
+   * @param {boolean} isMammal - True if the animal is a mammal, false otherwise.
+   */
+  constructor(name: string, sound: string, age: number, isMammal: boolean) {
+    // 5. Instance Properties: Data specific to each object instance.
+    //    Assigned from constructor parameters, types are inferred or explicitly declared above.
+    this.name = name;
+    this.sound = sound;
+    this.age = age;
+    this.#isMammal = isMammal; // Initialize private field
+    Animal.speciesCount++; // Increment static property on each new instance
+  }
+
+  // 6. Getter (Instance Method): Allows controlled access to instance properties.
+  //    Return type annotation `string`.
+  get description(): string {
+    return `${this.name} is a ${this.age}-year-old animal that says "${this.sound}".`;
+  }
+
+  // 7. Setter (Instance Method): Allows controlled modification of instance properties.
+  //    Parameter type annotation `string`.
+  set secret(trait: string) {
+    if (typeof trait === "string" && trait.length > 0) {
+      this.#secretTrait = trait;
+    } else {
+      console.warn("Invalid secret trait. Must be a non-empty string.");
+    }
+  }
+
+  // 8. Public Instance Method: Behavior that instances of the class can perform.
+  //    Return type annotation `void` as it doesn't return a value.
+  makeSound(): void {
+    console.log(`${this.name} says ${this.sound}!`);
+  }
+
+  // 9. Private Instance Method:
+  //    Helper method intended for internal use within the class.
+  //    Return type annotation `string`.
+  #getMammalStatus(): string {
+    return this.#isMammal ? "a mammal" : "not a mammal";
+  }
+
+  // 10. Public Instance Method utilizing a private method.
+  //     Return type annotation `string`.
+  getDetailedInfo(): string {
+    const mammalStatus = this.#getMammalStatus(); // Calling the private method
+    return `${this.name} (${this.age} years old) says "${
+      this.sound
+    }". It is ${mammalStatus}. Its secret is: ${this.#secretTrait}.`;
+  }
+
+  // 11. Static Method: Belongs to the class, not instances.
+  //     Return type annotation `string`.
+  static getAnimalCount(): string {
+    return `There are currently ${Animal.speciesCount} animals created.`;
+  }
+
+  // 12. Method for demonstrating method chaining
+  //     Return type annotation `this` for fluent chaining.
+  grow(years: number): this {
+    this.age += years;
+    console.log(
+      `${this.name} grew by ${years} years. Now ${this.age} years old.`
+    );
+    return this; // Return 'this' to allow chaining
+  }
+}
+
+/**
+ * 13. Inheritance: Creating a new class that inherits properties and methods
+ * from an existing class (the "parent" or "base" class).
+ */
+class Dog extends Animal {
+  // New instance property specific to Dog, with type annotation.
+  breed: string;
+
+  constructor(name: string, age: number, breed: string) {
+    // 14. super() call: Must be called in the constructor of a subclass
+    //     before 'this' is used. It calls the parent class's constructor.
+    //     Arguments are type-checked according to Animal's constructor.
+    super(name, "Woof", age, true); // Dogs are always mammals, make sound "Woof"
+    this.breed = breed; // Initialize new instance property
+  }
+
+  // 15. Method Overriding: Providing a specific implementation of a method
+  //     that is already defined in the parent class.
+  //     Type signature must be compatible with the parent method.
+  makeSound(): void {
+    console.log(`${this.name} the ${this.breed} barks: WOOF WOOF!`);
+  }
+
+  // 16. New method specific to Dog class
+  fetchBall(): void {
+    console.log(`${this.name} fetches the ball!`);
+  }
+}
+
+// --- Demonstrating the Class Features with TypeScript's Type Safety ---
+
+console.log("--- Animal Class Demonstrations ---");
+
+// Accessing a static property
+console.log(Animal.getAnimalCount());
+
+// Creating instances of Animal
+const lion = new Animal("Simba", "Roar", 5, true);
+const snake = new Animal("Kaa", "Hiss", 2, false);
+
+// Type checking in action:
+// const invalidAnimal = new Animal("Cat", "Meow", "three", true); // TS Error: Argument of type 'string' is not assignable to parameter of type 'number'.
+
+// Accessing instance properties
+console.log(`Lion's name: ${lion.name}`);
+console.log(`Snake's sound: ${snake.sound}`);
+
+// Calling instance methods
+lion.makeSound();
+snake.makeSound();
+
+// Accessing a getter
+console.log(lion.description);
+
+// Using a setter (modifying a private field)
+lion.secret = "King of the Jungle";
+// lion.#secretTrait; // TS Error: Property '#secretTrait' is not accessible outside class 'Animal' because it has a private identifier.
+// snake.secret = 123; // TS Error: Argument of type 'number' is not assignable to parameter of type 'string'.
+
+// Calling a public method that uses a private method and private field
+console.log(lion.getDetailedInfo());
+console.log(snake.getDetailedInfo());
+
+// Accessing a static method
+console.log(Animal.getAnimalCount());
+
+// Demonstrating method chaining
+lion.grow(2).makeSound();
+
+console.log("\n--- Dog Class (Inheritance) Demonstrations ---");
+
+// Creating an instance of Dog (inherits from Animal)
+const buddy = new Dog("Buddy", 3, "Golden Retriever");
+
+// Accessing inherited properties
+console.log(`Buddy's name: ${buddy.name}`);
+console.log(`Buddy's age: ${buddy.age}`);
+console.log(`Buddy's breed: ${buddy.breed}`); // Specific to Dog class
+
+// Calling an overridden method
+buddy.makeSound();
+
+// Calling an inherited method (that wasn't overridden)
+console.log(buddy.description);
+
+// Calling a new method specific to Dog
+buddy.fetchBall();
+
+// Verify static count again
+console.log(Animal.getAnimalCount());
+```
+
+### 5.10 Creating an Object (Instance of a Class)
 
 You can create an object from a class using the `new` keyword.
 
@@ -888,7 +1332,7 @@ Here:
 - `person1` and `person2` are objects created from the `Person` class.
 - The properties `name` and `age` are initialized with values provided during the object creation.
 
-### 3. Adding Static Methods and Properties
+### 5.11 Adding Static Methods and Properties
 
 Static methods and properties belong to the class itself rather than to instances of the class.
 
@@ -904,7 +1348,7 @@ console.log(Calculator.add(5, 3)); // Output: 8
 
 - The `add` method is a static method that can be called on the class itself, not on instances.
 
-### 4. Inheritance
+### 5.12 Inheritance
 
 You can create a new class that inherits from an existing class using the `extends` keyword.
 
@@ -946,7 +1390,7 @@ dog.speak(); // Output: Rex barks.
 
 This is the modern way to work with classes and objects in JavaScript, which aligns with object-oriented programming principles.
 
-## 5.6 Math [See](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math)
+## 5.13 Math [See](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math)
 
 ```js
 // Pi property
@@ -960,7 +1404,7 @@ console.log(Math.random());
 console.log(Math.max(1, 2, 5, 4, 7, 9, 6));
 ```
 
-## 5.7 String
+## 5.14 String
 
 ```js
 // String Primitive
@@ -991,7 +1435,7 @@ console.log(message); // Hi Subroto 5
 // How are you?
 ```
 
-## 5.8 Date
+## 5.15 Date
 
 ```js
 const now = new Date();
@@ -1256,13 +1700,31 @@ console.log(combined); // This-is-my-first-message (Used in url slug)
 ```js
 // Premitive types
 const numbers = [2, 3, 1];
-
 numbers.sort();
-console.log(numbers);
+console.log(numbers); // [ 1, 2, 3 ]
 
-numbers.reverse();
-console.log(numbers);
+let arr = [1, 2, 15];
+// the method reorders the content of arr
+arr.sort();
+console.log(arr); // 1, 15, 2
+```
 
+The items are sorted as **strings** by default.
+Literally, all elements are converted to strings for comparisons. For strings, lexicographic ordering is applied and indeed "2" > "15".
+To use our own sorting order, we need to supply a function as the argument of arr.sort().
+
+```js
+let arr = [1, 2, 15, 4];
+
+arr.sort(function (a, b) {
+  // a: arr[i+1], b: arr[i]
+  console.log("a: " + a + " - " + "b:" + b, arr);
+  return a - b;
+});
+console.log(arr);
+```
+
+```js
 // For array of objects
 const courses = [
   { id: 1, name: "Node.js" },
@@ -1287,6 +1749,20 @@ courses.sort(function (a, b) {
 });
 
 console.log(courses);
+```
+
+```js
+const people = [
+  { name: "Alice", age: 32 },
+  { name: "Bob", age: 24 },
+  { name: "Charlie", age: 29 },
+  { name: "Diana", age: 35 },
+];
+
+people.sort(function (a, b) {
+  return a.age - b.age;
+});
+console.log(people);
 ```
 
 ## 6.10 Testing the Elements of an Array
@@ -1419,7 +1895,7 @@ let hasEven = [1, 2, 3].some((num) => num % 2 === 0); // true
 // every
 let allEven = [2, 4, 6].every((num) => num % 2 === 0); // true
 
-// slice
+// slice(start, [end])
 let part = [1, 2, 3, 4].slice(1, 3); // [2, 3]
 
 // splice
@@ -2185,14 +2661,199 @@ NB: If we install any packeg globally(-g). So that we can use it in any project.
 
 # 5 useful cheat sheets for Javascript
 
-[![d1P0SPp.md.jpg](https://iili.io/d1P0SPp.md.jpg)](https://freeimage.host/i/d1P0SPp)
+### Array Methods
+
+```javascript
+[1, 2, 3].length; // 3
+[1, 2, 3].push(4); // [1, 2, 3, 4] *
+[1, 2, 3].unshift(0); // [0, 1, 2, 3] *
+[1, 2, 3].pop(); // [1, 2]
+[1, 2, 3].shift(); // [2, 3] *
+[1, 2, 3].at(2); // 3
+[1, 2, 3].indexOf(3); // 2
+[1, 2, 3].includes(3); // true
+[1, 2, 3].map((num) => num * 2); // [2, 4, 6]
+[1, 2, 3].filter((num) => num > 1); // [2, 3]
+[1, 2, 3].every((num) => num > 0); // true
+[1, 2, 3].some((num) => num > 2); // true
+[1, 2, 3].fill(0); // [0, 0, 0]
+[1, 2, 3].reduce((acc, num) => acc + num, 0); // 6
+[1, 2, 3].concat([4, 5]); // [1, 2, 3, 4, 5]
+[1, 2, 3].reverse(); // [3, 2, 1]
+[1, 2, 3].sort(); // [1, 2, 3]
+[1, 2, 3].join("-"); // "1-2-3"
+[1, 2, 3].flat(); // [1, 2, 3]
+[1, 2, 3].find((num) => num === 1); // 1
+[1, 2, 3].findIndex((num) => num === 2); // 1
+[1, 2, 3].toString(); // "1,2,3"
+[1, 2, 3].toLocaleString(); // "1,2,3"
+[1, 2, 3].slice(1, 2); // [2]
+[1, 2, 3].splice(1, 1, "a"); // [1, 'a', 3]
+Array.isArray([1, 2, 3]); // true
+Array.from("123"); // ['1', '2', '3']
+```
+
+```javascript
+"JavaScript".length; // 10
+"JavaScript"[2]; // 'v'
+"JavaScript".charAt(2); // 'v'
+"JavaScript".charCodeAt(2); // 118
+"JavaScript".indexOf("S"); // 4
+"JavaScript".toLowerCase(); // 'javascript'
+"JavaScript".toUpperCase(); // 'JAVASCRIPT'
+"JavaScript".slice(2, 5); // 'vaS'
+"JavaScript".substring(2, 5); // 'vaS'
+"JavaScript".substr(2, 2); // 'va'
+"JavaScript".concat(" Dev"); // 'JavaScript Dev'
+"JavaScript Dev".split(" "); // ['JavaScript', 'Dev']
+"JavaScript Dev".includes("Dev"); // true
+"Java Dev".replace("Dev", "JS"); // 'Java JS'
+"Java Dev".replaceAll("Dev", "JS"); // 'Java JS'
+"JavaScript Dev".trim(); // 'JavaScript Dev'
+"JavaScript Dev".trimStart(); // 'JavaScript Dev'
+"JavaScript Dev".trimEnd(); // 'JavaScript Dev'
+"Dev".padStart(10, "*"); // '*******Dev'
+"Dev".padEnd(10, "*"); // 'Dev*******'
+"JavaScript Dev".startsWith("Java"); // true
+"JavaScript Dev".endsWith("Dev"); // true
+"JavaScript Dev".repeat(3); // 'JavaScript DevJavaScript DevJavaScript Dev'
+"JavaScript Dev".indexOf("JavaScript"); // 0
+"JavaScript Dev".lastIndexOf("Dev"); // 11
+"JavaScript Dev".search("Dev"); // 11
+"JavaScript Dev".includes("Dev"); // true
+```
+
+### Date Methods
+
+```javascript
+const date = new Date();
+//? 2023-04-25T19:27:35.363Z
+new Date(1682452894553);
+//? Sun Apr 25 2023 00:00:00 GMT+0200
+new Date("2023-04-25");
+//? Sun Apr 25 2023 00:00:00 GMT+0200
+new Date("2023-04-25T01:10:00");
+//? Sun Apr 25 2023 01:10:00 GMT+0200
+new Date(2023, 3, 25, 1, 10, 0, 0);
+//? Tue Apr 25 2023 01:10:00 GMT+0200
+// year, month, day, hour, min, sec, misc
+
+// Get Date Methods
+date.getFullYear(); //? 2023
+date.getMonth(); //? 3
+date.getDate(); //? 25
+date.getDay(); //? 2
+date.getHours(); //? 21
+date.getMinutes(); //? 27
+date.getSeconds(); //? 35
+date.getMilliseconds(); //? 363
+date.getTime(); //? 1682452895363
+date.getTimezoneOffset(); //? -120
+
+// Set Date Methods
+date.setFullYear(2023); //? set year
+date.setMonth(11); //? set month
+date.setDate(1); //? set date
+date.setHours(10); //? set hours
+date.setMinutes(20); //? set minutes
+date.setSeconds(20); //? set seconds
+date.setMilliseconds(20); //? set milliseconds
+date.setTime(1680153156131); //? set time (milliseconds since Jan 1, 1970)
+
+// Conversion
+date.toString(); //? Tue Apr 25 2023 21:27:35 GMT+0200 (Central European Summer Time)
+date.toDateString(); //? Tue Apr 25 2023
+date.toTimeString(); //? 21:27:35 GMT+0200 (Central European Summer Time)
+date.toISOString(); //? 2023-04-25T19:27:35.363Z
+date.toLocaleString(); //? 4/25/2023, 9:27:35 PM
+date.toLocaleDateString(); //? 4/25/2023
+date.toLocaleTimeString(); //? 9:27:35 PM
+date.getTime(); //? 1682452895363
+```
+
+### DOM Methods
+
+#### Accessing Elements
+
+```javascript
+document.getElementById("id"); //? find element by its id
+document.getElementsByClassName("class"); //? find elements by class
+document.getElementsByTagName("tag"); //? find elements by tag name
+document.querySelector("selector"); //? find first element matching selector
+document.querySelectorAll("selector"); //? find all elements matching selector
+```
+
+#### Creating/Appending Elements
+
+```javascript
+document.createElement("name"); //? create element node
+document.createTextNode("text"); //? create text node
+elem.appendChild(child); //? append child to element
+elem.removeChild(child); //? remove child from element
+elem.replaceChild(newChild, oldChild); //? replace child with new child
+```
+
+#### Modifying Elements
+
+```javascript
+elem.innerHTML = "<h2>outerHTML</h2>"; //? set HTML
+elem.innerText = "inner text"; //? set inner text
+elem.textContent = "text content"; //? set text content
+elem.style.color = "blue"; //? set style
+elem.outerHTML = "<p>learn with <strong>Athreos</strong></p>"; //? replace HTML
+```
+
+#### Accessing Parent, Children, Siblings
+
+```javascript
+elem.parentElement; //? access parent element
+elem.children; //? access element children
+elem.firstElementChild; //? access first child
+elem.lastElementChild; //? access last child
+elem.nextElementSibling; //? access next sibling
+elem.previousElementSibling; //? access previous sibling
+```
+
+#### Modifying Attributes
+
+```javascript
+elem.getAttribute("attr"); //? get attribute value
+elem.setAttribute("attr", "value"); //? set attribute value
+elem.removeAttribute("attr"); //? remove attribute
+```
+
+#### Modifying Element Classes
+
+```javascript
+elem.classList.add("my-class"); //? add class
+elem.classList.remove("my-class"); //? remove class
+elem.classList.toggle("my-class"); //? toggle class
+elem.classList.contains("my-class"); //? check for class
+```
+
+<!-- [![d1P0SPp.md.jpg](https://iili.io/d1P0SPp.md.jpg)](https://freeimage.host/i/d1P0SPp)
 [![d1P08VR.md.jpg](https://iili.io/d1P08VR.md.jpg)](https://freeimage.host/i/d1P08VR)
 [![d1P0vov.md.jpg](https://iili.io/d1P0vov.md.jpg)](https://freeimage.host/i/d1P0vov)
 [![d1P0eDJ.md.jpg](https://iili.io/d1P0eDJ.md.jpg)](https://freeimage.host/i/d1P0eDJ)
 [![d1P0gKN.md.jpg](https://iili.io/d1P0gKN.md.jpg)](https://freeimage.host/i/d1P0gKN)
 [![d1P0rlI.md.jpg](https://iili.io/d1P0rlI.md.jpg)](https://freeimage.host/i/d1P0rlI)
-[![d1P0sNs.md.jpg](https://iili.io/d1P0sNs.md.jpg)](https://freeimage.host/i/d1P0sNs)
+[![d1P0sNs.md.jpg](https://iili.io/d1P0sNs.md.jpg)](https://freeimage.host/i/d1P0sNs) -->
+
 [![d1P0iRn.md.jpg](https://iili.io/d1P0iRn.md.jpg)](https://freeimage.host/i/d1P0iRn)
+
+### DOM Events (Event Listeners)
+
+```javascript
+document.addEventListener("click", (event) => {
+  console.log("Click Event", event);
+});
+
+// unregister event listener
+document.removeEventListener("click", (event) => {
+  console.log("Unregistered Event", event);
+});
+```
+
 [![d1P0LDG.md.jpg](https://iili.io/d1P0LDG.md.jpg)](https://freeimage.host/i/d1P0LDG)
 
 # 25 js Problem solving [YouTube](https://www.youtube.com/watch?v=qJGR9lLcRc0)
